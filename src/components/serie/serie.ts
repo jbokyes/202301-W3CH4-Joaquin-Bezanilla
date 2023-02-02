@@ -1,13 +1,13 @@
 /* eslint-disable no-unused-vars */
-import { serieStructure } from '../../models/task';
+import { SerieStructure } from '../../models/serieStructure';
 import { Component } from '../component/component';
 
 export class Serie extends Component {
   constructor(
     public selector: string,
-    public serie: serieStructure,
-    public deleteSerie: (id: serieStructure['id']) => void,
-    public updateSerie: (task: serieStructure) => void
+    public serie: SerieStructure,
+    public deleteSerie: (id: SerieStructure['id']) => void,
+    public updateSerie: (task: SerieStructure) => void
   ) {
     super();
     this.serie = { ...serie };
@@ -25,7 +25,7 @@ export class Serie extends Component {
     document
       .querySelector(`#s${this.serie.id}`)
       ?.addEventListener('change', () => {
-        this.serie.isCompleted = true;
+        this.serie.watched = true;
         this.updateSerie(this.serie);
       });
   }
@@ -55,7 +55,7 @@ export class Serie extends Component {
                   <i class="icon--score fas fa-star" title="5/5"></i>
                 </li>
               </ul>
-              <i class="fas fa-times-circle icon--delete id = "d${this.serie.id}"></i>
+              <i class="fas fa-times-circle icon--delete id = "d${this.serie.id}" title="button"></i>
             </li>`;
   }
 }
